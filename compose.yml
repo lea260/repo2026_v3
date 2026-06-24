@@ -1,0 +1,59 @@
+services:
+  php:
+    # build:
+    #   context: .
+    #   dockerfile: Dockerfile
+    image: mi-prj-php:v1
+    container_name: php_container
+    ports:
+      - "8080:80"
+      - "9003:9003"  # <-- Puerto Xdebug
+    volumes:
+      - ./src:/var/www/html/src
+      - ./index.php:/var/www/html/index.php
+      - ./composer.json:/var/www/html/composer.json
+      - /var/www/html/vendor
+      - ./php-config:/usr/local/etc/php
+      # - .:/var/www/html
+    depends_on:
+      - db
+    networks:
+      - app-network
+
+  db:
+    image: mi-prj-db:v1
+    container_name: mariadb_container
+    restart: always
+    ports:
+      - "3308:3306"
+    environment:
+      MARIADB_ROOT_PASSWORD: root
+      MYSQL_DATABASE: mydatabase
+      MYSQL_USER: user
+      MYSQL_PASSWORD: userpassword
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - app-network
+
+  phpmyadmin:
+    image: mi-prj-pma:v1  # <-- Cambia phpmyadmin:5.2.0 por tu tag
+    container_name: phpmyadmin_container
+    restart: always
+    ports:
+      - "8081:80"
+    environment:
+      PMA_HOST: db
+      MYSQL_ROOT_PASSWORD: root
+    depends_on:
+      - db
+    networks:
+      - app-network
+
+volumes:
+  mysql-data:
+
+
+networks:
+  app-network:
+    driver: bridge

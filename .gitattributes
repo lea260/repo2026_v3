@@ -1,0 +1,7 @@
+# Forzar que todos los archivos de texto se normalicen a LF al ir al repositorio
+* text=auto eol=lf
+
+# Asegurar que los archivos PHP, JS y JSON sean siempre LF
+*.php text eol=lf
+*.js text eol=lf
+*.json text eol=lf
