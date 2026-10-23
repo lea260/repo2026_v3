@@ -26,4 +26,20 @@ class Settings
         $host = $_SERVER['HTTP_HOST'] ?? 'localhost';
         return 'http://' . $host . self::URL_PREFIX . 'index.php/';
     }
+
+    public static function getUrlCSS()
+    {
+        $host = $_SERVER['HTTP_HOST'] ?? 'localhost';
+        return 'http://' . $host . self::URL_PREFIX . 'src/public/css/';
+    }
+    public static function getUrlJS()
+    {
+        $host = $_SERVER['HTTP_HOST'] ?? 'localhost';
+        return 'http://' . $host . self::URL_PREFIX . 'src/public/js/';
+    }
+    public static function getUrlImg()
+    {
+        $host = $_SERVER['HTTP_HOST'] ?? 'localhost';
+        return 'http://' . $host . self::URL_PREFIX . 'src/public/img/';
+    }
 }

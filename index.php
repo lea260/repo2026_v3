@@ -1,5 +1,5 @@
 <?php
-// 1. Carga el autoloader que mapeaste en la raíz del proyecto
+// 1. index root Carga el autoloader que mapeaste en la raíz del proyecto
 // Gracias al doble montaje de Docker, 'vendor' está al mismo nivel que este archivo.
 require_once __DIR__ . '/vendor/autoload.php';
 
