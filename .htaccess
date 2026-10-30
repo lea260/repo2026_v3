@@ -1,0 +1,8 @@
+RewriteEngine On
+
+# Si la petición es hacia un archivo o directorio que existe realmente (css, js, imágenes), no se redirige.
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Redirige todo lo demás a index.php manteniendo el path original
+RewriteRule ^(.*)$ index.php [QSA,L]

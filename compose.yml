@@ -14,6 +14,8 @@ services:
       - ./composer.json:/var/www/html/composer.json
       - /var/www/html/vendor
       - ./php-config:/usr/local/etc/php
+      - ./apache/apache-config.conf:/etc/apache2/sites-available/000-default.conf
+      - ./.htaccess:/var/www/html/.htaccess
       # - .:/var/www/html
     depends_on:
       - db
